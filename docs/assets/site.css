@@ -47,11 +47,13 @@ section.crop{margin-top:30px}
 .candhead{display:flex;flex-wrap:wrap;gap:4px 18px;align-items:baseline;margin-bottom:11px}
 .provider{font-weight:600}
 .meta{font-size:12.5px;color:var(--muted)}
-.views{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:8px}
-.views a{display:block;border-radius:5px;overflow:hidden;background:var(--frame)}
+/* The renders are square, so the cell is forced square and the image is contained inside it.
+   object-fit:cover here cropped the sides off every turntable, because a stretched grid item
+   is not square and cover fills by cutting. align-items:start stops the stretch as well. */
+.views{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:8px;align-items:start}
+.views a{display:block;aspect-ratio:1;border-radius:5px;overflow:hidden;background:var(--frame)}
 .views a:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
-.views img{width:100%;max-width:100%;aspect-ratio:1;object-fit:cover;display:block}
-@media (min-width:760px){.views{grid-template-columns:repeat(3,1fr)}}
+.views img{width:100%;height:100%;max-width:100%;object-fit:contain;display:block}
 .warn{color:var(--warn);font-size:13px;margin-top:9px}
 .pickrow{margin-top:13px}
 button{font:inherit}
