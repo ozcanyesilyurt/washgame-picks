@@ -4,6 +4,7 @@
   var root = document.getElementById("page");
   if (!root) return;
   var JOB = root.dataset.job;
+  var SCRIPT = root.dataset.script;
   var KEY = "assetgen.picks." + JOB;
   var data = JSON.parse(document.getElementById("candidates").textContent);
 
@@ -40,7 +41,7 @@
       if (picks[c.crop] === c.id) args.push(c.crop + "=" + c.id);
     }
     if (!args.length) return "";
-    return "python assetgen.py pick " + JOB + " " + args.join(" ");
+    return "python " + SCRIPT + " pick " + JOB + " " + args.join(" ");
   }
 
   function render() {
