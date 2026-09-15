@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Model picks</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600&family=IBM+Plex+Mono&display=swap">
+<link rel="stylesheet" href="assets/site.css">
+</head><body>
+<div class="wrap" id="index">
+<header><h1>Model picks</h1><span class="job-id mono">2 jobs</span></header>
+<p class="hint">Every rendered job, newest first. Open one to compare the candidates and pick a winner.</p>
+<ul class="jobs">
+<li data-job="20260915-033930-030bc706_2848_4eb5_b061_dfc91000c7ad" data-crops="1">
+<img src="jobs/20260915-033930-030bc706_2848_4eb5_b061_dfc91000c7ad/img/crops/Lawn_Mower.webp" alt="" loading="lazy">
+<div><div class="name"><a href="jobs/20260915-033930-030bc706_2848_4eb5_b061_dfc91000c7ad/index.html">Lawn_Mower</a></div><div class="sub mono">20260915-033930-030bc706_2848_4eb5_b061_dfc91000c7ad</div></div>
+<span class="badge"></span>
+</li>
+<li data-job="20260915-024019-tabby_test" data-crops="1">
+<img src="jobs/20260915-024019-tabby_test/img/crops/Toy_cat.webp" alt="" loading="lazy">
+<div><div class="name"><a href="jobs/20260915-024019-tabby_test/index.html">Toy_cat</a></div><div class="sub mono">20260915-024019-tabby_test</div></div>
+<span class="badge"></span>
+</li>
+</ul>
+</div>
+<script>
+(function () {
+  "use strict";
+  var rows = document.querySelectorAll("li[data-job]");
+  for (var i = 0; i < rows.length; i++) {
+    var row = rows[i], picks = {};
+    try { picks = JSON.parse(localStorage.getItem("assetgen.picks." + row.dataset.job) || "{}"); } catch (e) {}
+    var n = Object.keys(picks).length, total = Number(row.dataset.crops);
+    var badge = row.querySelector(".badge");
+    if (!badge) continue;
+    if (n === 0) { badge.textContent = total + (total === 1 ? " crop" : " crops"); continue; }
+    badge.textContent = n + " of " + total + " picked";
+    if (n >= total) badge.classList.add("done");
+  }
+})();
+</script>
+</body></html>
